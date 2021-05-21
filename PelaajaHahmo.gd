@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-#tarvitaan, jotta voidaan viitata tähän skriptiin/luokkaan
+#tarvitaan, jotta voidaan viitata tähän skriptiin/luokkaan suoraan nimellä
 class_name PelaajaHahmo
 
 # kaksoispiste tarkoittaa että muuttujan 'nopeus' tyyppiä ei voi muuttaa jatkossa
