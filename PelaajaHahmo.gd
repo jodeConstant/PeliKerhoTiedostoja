@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-#tarvitaan, jotta voidaan viitata tähän skriptiin/luokkaan suoraan nimellä
+#tarvitaan, jotta voidaan viitata tähän skriptiin/luokkaan
 class_name PelaajaHahmo
 
 # kaksoispiste tarkoittaa että muuttujan 'nopeus' tyyppiä ei voi muuttaa jatkossa
@@ -15,13 +15,15 @@ export var max_hypyn_kesto: = 0.5
 var _hypyn_kesto: = 0.0
 
 # 'onready' tarkoittaa että nämä viittaukset (muuttujat) asetetaan vasta kun skene tai peli käynnistyy
-# Vaatii 'AnimationPlayer' solmun, nimien on täsmättävä myös
-onready var _animation_player = get_node("AnimationPlayer")
+# Vaatii 'AnimatedSprite' solmun, nimien on täsmättävä myös
+onready var _animaation_ohjaus = get_node("AnimatedSprite")
 # voidaan kirjoittaa myös näin:
 #	$AnimatedSprite 
 #	on sama kuin:
 #	get_node("AnimatedSprite")
-onready var _animaation_ohjaus = $AnimatedSprite
+# onready var _animaation_ohjaus = $AnimatedSprite
+
+signal interact()
 
 func _laske_suunta():
 	# Vector2 -muuttujat luodaan seuraavasti:
@@ -97,8 +99,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.get_action_strength("käytä"):
-		print_debug("ei mitään käytettävää!")
+	if Input.is_action_just_pressed("käytä"):
+		#print_debug("ei mitään käytettävää!")
+		emit_signal("interact")
 
 
 
